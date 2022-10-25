@@ -13,6 +13,38 @@ Database::Database() {
     }
     top = 0;
 }
+
+void Database::main_menu() {
+    char* command = new char[160];
+
+    while (1) {
+        std::cout << '\n';
+        std::cout << "\tWelcome to the student accounting system\n";
+        std::cout << "Hello, select the action: \n";
+        std::cout << "'view' - to print the entire database \n";
+        std::cout << "'add' - to add a new elements \n";
+        std::cout << "'group' - to find all students of a given group\n";
+        std::cout << "'surname' - to find a student by last name \n";
+        std::cout << "'exit' - to finish working with the program and save data\n";
+        std::cout << "Number of entries: " << top << "\n";
+        std::cin >> command;
+
+        if (compare_lines(command, (char*)"view")) { show_database(); continue; }
+        else if (compare_lines(command, (char*)"add")) { add_entry(); continue; }
+        else if (compare_lines(command, (char*)"group")) { find_group(); continue; }
+        else if (compare_lines(command, (char*)"surname")) { find_surname(); continue; }
+        else if (compare_lines(command, (char*)"exit")) { write_file(); exit(1); }
+        else {
+            std::cout << "Not a command \n";
+            std::cout << "\n";
+            std::cout << "\n";
+            continue;
+        }
+
+        delete[] command;
+    }
+}
+
 void Database::read_file() {
     file.open("d:\\database.txt");
     if (!file) {
@@ -31,7 +63,9 @@ void Database::read_file() {
     }
     file.close();
 }
+
 void Database::show_database() {
+    alphabet_sort();
     Student* p = database;
     std::cout << std::setw(10) << "First name" << std::setw(20) << "Last name"
         << std::setw(20) << "Faculty" << std::setw(20) << "Group" << std::endl;
@@ -43,8 +77,8 @@ void Database::show_database() {
     }
 }
 
-
 void Database::write_file() {
+    alphabet_sort();
     file.open("d:\\database.txt");
     if (!file) {
         std::cout << "file error!" << std::endl;

@@ -11,7 +11,6 @@ public:
 	Student();
 	Student(char* xfam, char* xname, char* xfaculty, int xgroup);
 	~Student();
-	//Student(Student& ref_student); //конструктор копирования 
 	bool operator< (Student &st2);
 	bool operator> (Student& st2);
 	void operator= (Student& st2);

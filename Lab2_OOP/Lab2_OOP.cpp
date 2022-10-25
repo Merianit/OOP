@@ -11,13 +11,7 @@ int main()
 {
     Database curr_database;
     curr_database.read_file();
-    //curr_database.add_entry();
-    curr_database.show_database();
-    //curr_database.find_group();
-    curr_database.alphabet_sort();
-    curr_database.show_database();
-    curr_database.find_surname();
-    curr_database.write_file();
+    curr_database.main_menu();
     return 0;
 }
 
